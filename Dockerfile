@@ -1,5 +1,6 @@
 # gitlab with nginx, etcd registration, confd and supervisord on trusty
 FROM markusma/nginx-etcd:trusty
+MAINTAINER Markus Mattinen <docker@gamma.fi>
 
 RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add - \
  && echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
