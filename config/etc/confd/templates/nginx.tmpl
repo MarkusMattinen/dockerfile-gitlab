@@ -1,0 +1,27 @@
+# nginx server config
+
+upstream gitlab {
+    server unix:/home/git/gitlab/tmp/sockets/gitlab.socket;
+}
+
+server {
+    listen [::]:5000 ipv6only=off;
+    server_name {{ .gitlab_vhost }};
+    root /home/git/gitlab/public;
+
+    more_set_headers "X-Frame-Options: DENY";
+    more_set_headers "Access-Control-Allow-Origin: https://{{ .gitlab_vhost }}";
+    more_set_headers "Content-Security-Policy: connect-src 'self'; font-src 'none'; frame-src 'none'; img-src 'self'; media-src 'none'; object-src 'none'; style-src 'self'; script-src 'self'";
+
+    location / {
+        try_files $uri $uri/index.html $uri.html @gitlab;
+    }
+
+    location @gitlab {
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_read_timeout 300;
+        proxy_connect_timeout 300;
+        proxy_pass http://gitlab;
+    }
+}

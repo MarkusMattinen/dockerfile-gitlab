@@ -1,0 +1,9 @@
+#!/bin/sh
+
+export HOME=/home/git
+
+echo "Printing info..."
+bundle exec rake gitlab:env:info RAILS_ENV=production
+sleep 5
+echo "Checking..."
+bundle exec rake gitlab:check RAILS_ENV=production
