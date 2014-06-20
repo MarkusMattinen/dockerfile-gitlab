@@ -55,7 +55,6 @@ RUN mkdir -p /var/run/sshd \
 ADD config/home/git /home/git
 
 RUN chown -R git:git /home/git \
- && chmod o-rwx /home/git/gitlab/config/unicorn.rb /home/git/gitlab/config/database.yml \
  && cd /home/git/gitlab \
  && su git -c "bundle exec rake assets:precompile RAILS_ENV=production"
 
