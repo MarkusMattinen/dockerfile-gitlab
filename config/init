@@ -1,7 +1,7 @@
 #!/bin/sh
 
-until confd -onetime -node https://$ETCD_HOST -config-file /etc/confd/confd.toml; do
-  echo "waiting for confd to refresh main.cf"
+until confd -onetime -backend env -config-file /etc/confd/confd.toml; do
+  echo "[confd] waiting for confd to refresh config files"
   sleep 5
 done
 
