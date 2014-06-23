@@ -6,11 +6,11 @@ upstream gitlab {
 
 server {
     listen [::]:5000 ipv6only=off;
-    server_name {{ .gitlab_vhost }};
+    server_name {{ .vhost }};
     root /home/git/gitlab/public;
 
     more_set_headers "X-Frame-Options: DENY";
-    more_set_headers "Access-Control-Allow-Origin: https://{{ .gitlab_vhost }}";
+    more_set_headers "Access-Control-Allow-Origin: https://{{ .vhost }}";
     more_set_headers "Content-Security-Policy: connect-src 'self'; font-src 'none'; frame-src 'none'; img-src 'self'; media-src 'none'; object-src 'none'; style-src 'self'; script-src 'self'";
 
     location / {

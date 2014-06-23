@@ -1,9 +1,4 @@
 [template]
-keys = [
-  "/gitlab/vhost",
-  "/gitlab/smtp",
-  "/gitlab/oauth"
-]
 owner = "root"
 mode = "0644"
 src = "database.tmpl"

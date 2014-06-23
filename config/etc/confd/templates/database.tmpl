@@ -1,10 +1,10 @@
 # database config
 production:
-  adapter: postgresql
+  adapter: {{ .db_adapter }}
   encoding: unicode
-  database: {{ .gitlab_postgresql_database }}
+  database: {{ .db_database }}
   pool: 10
-  username: {{ .gitlab_postgresql_username }}
-  password: {{ .gitlab_postgresql_password }}
-  host: {{ .gitlab_postgresql_host }}
-  port: {{ .gitlab_postgresql_port }}
+  username: {{ .db_username }}
+  password: {{ .db_password }}
+  host: {{ .db_host }}
+  port: {{ .db_port }}

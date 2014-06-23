@@ -1,11 +1,11 @@
 defaults
 account default
-host {{ .global_smtp_host }}
-port {{ .global_smtp_port }}
-tls {{ .global_smtp_tls }}
+host {{ .smtp_host }}
+port {{ .smtp_port }}
+tls {{ .smtp_tls }}
 tls_certcheck off
-domain {{ .gitlab_smtp_domain }}
-from {{ .gitlab_smtp_from }}
-auth {{ .gitlab_smtp_auth }}
-user {{ .gitlab_smtp_user }}
-password {{ .gitlab_smtp_pass }}
+domain {{ .smtp_domain }}
+from {{ .smtp_from }}
+auth {{ .smtp_auth }}
+user {{ .smtp_user }}
+password {{ .smtp_pass }}

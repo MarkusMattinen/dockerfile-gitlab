@@ -2,11 +2,11 @@
 
 production: &base
   gitlab:
-    host: {{ .gitlab_vhost }}
+    host: {{ .vhost }}
     port: 443
     https: true
-    email_from: {{ .gitlab_smtp_from }}
-    support_email: {{ .gitlab_smtp_support_email }}
+    email_from: {{ .smtp_from }}
+    support_email: {{ .smtp_support_email }}
     default_projects_limit: 10
     default_can_create_group: true
     default_can_create_team: true
@@ -33,13 +33,13 @@ production: &base
     block_auto_created_users: false
 
     providers:
-       - { name: 'google_oauth2', app_id: '{{ .gitlab_oauth_google_app_id }}',
-           app_secret: '{{ .gitlab_oauth_google_app_secret}}',
+       - { name: 'google_oauth2', app_id: '{{ .oauth_google_app_id }}',
+           app_secret: '{{ .oauth_google_app_secret}}',
            args: { access_type: 'offline', approval_prompt: '' } }
-       - { name: 'twitter', app_id: '{{ .gitlab_oauth_twitter_app_id }}',
-           app_secret: '{{ .gitlab_oauth_twitter_app_secret}}'}
-       - { name: 'github', app_id: '{{ .gitlab_oauth_github_app_id }}',
-           app_secret: '{{ .gitlab_oauth_github_app_secret }}' }
+       - { name: 'twitter', app_id: '{{ .oauth_twitter_app_id }}',
+           app_secret: '{{ .oauth_twitter_app_secret}}'}
+       - { name: 'github', app_id: '{{ .oauth_github_app_id }}',
+           app_secret: '{{ .oauth_github_app_secret }}' }
 
   satellites:
     path: /home/git/gitlab-satellites/

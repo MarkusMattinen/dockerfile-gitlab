@@ -1,7 +1,4 @@
 [template]
-keys = [
-  "/gitlab/postgresql",
-]
 owner = "root"
 mode = "0644"
 src = "database.tmpl"
