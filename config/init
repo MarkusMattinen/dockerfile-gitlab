@@ -19,6 +19,8 @@ su git -c "./bin/install"
 
 cd /home/git/gitlab
 
+su git -c "bundle exec rake assets:precompile RAILS_ENV=production"
+
 if [ "$1" = "initdb" ]; then
     echo "Regenerating SSH host keys"
     /bin/rm /etc/ssh/ssh_host_*

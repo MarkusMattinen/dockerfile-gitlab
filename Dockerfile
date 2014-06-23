@@ -54,9 +54,7 @@ RUN mkdir -p /var/run/sshd \
 
 ADD config/home/git /home/git
 
-RUN chown -R git:git /home/git \
- && cd /home/git/gitlab \
- && su git -c "bundle exec rake assets:precompile RAILS_ENV=production"
+RUN chown -R git:git /home/git
 
 ADD config/etc/redis.conf /etc/redis.conf
 ADD config/etc/supervisor/conf.d /etc/supervisor/conf.d
