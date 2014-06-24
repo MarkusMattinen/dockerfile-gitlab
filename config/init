@@ -1,9 +1,6 @@
 #!/bin/sh
 
-until confd -onetime -backend env -config-file /etc/confd/confd.toml; do
-  echo "[confd] waiting for confd to refresh config files"
-  sleep 5
-done
+confd -onetime -backend env -config-file /etc/confd/confd.toml
 
 sysctl vm.overcommit_memory=1
 
@@ -35,6 +32,6 @@ elif [ "$1" = "migrate" ]; then
     yes yes | su git -c "bundle exec rake db:migrate force=yes RAILS_ENV=production"
 else
     echo "Starting supervisord..."
-    exec /usr/bin/supervisord -n
+    exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 fi
 
