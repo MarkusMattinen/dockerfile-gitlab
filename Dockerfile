@@ -19,7 +19,7 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && add-apt-repository ppa:git-core/ppa \
  && apt-get update \
  && apt-get install -y --no-install-recommends build-essential zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev libncurses5-dev libffi-dev openssh-server redis-server checkinstall libxml2-dev libxslt-dev libcurl4-openssl-dev \
-    libicu-dev python python-docutils msmtp-mta sudo openjdk-7-jre-headless git postgresql-9.2 libpq-dev \
+    libicu-dev python python-docutils msmtp-mta sudo openjdk-7-jre-headless git postgresql-9.3 libpq-dev \
  && mkdir -p /tmp/ruby \
  && cd /tmp/ruby \
  && curl -sSL ftp://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz | tar xz \
@@ -35,7 +35,7 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && cd /home/git/gitlab \
  && gem install bundler --no-ri --no-rdoc \
  && su git -c "bundle install -j`nproc` --deployment --without development test mysql aws" \
- && apt-get purge -y build-essential checkinstall python-docutils postgresql-9.2 \
+ && apt-get purge -y build-essential checkinstall python-docutils \
  && apt-get autoremove -y \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
