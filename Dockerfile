@@ -22,16 +22,16 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
     libicu-dev python python-docutils msmtp-mta sudo openjdk-7-jre-headless git postgresql-9.2 libpq-dev \
  && mkdir -p /tmp/ruby \
  && cd /tmp/ruby \
- && curl -sSL ftp://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p481.tar.gz | tar xz \
- && cd ruby-2.0.0-p481 \
+ && curl -sSL ftp://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz | tar xz \
+ && cd ruby-2.1.2 \
  && ./configure --disable-install-rdoc \
  && make -j4 \
  && make install \
  && cd / \
  && rm -rf /tmp/ruby \
  && cd /home/git \
- && su git -c "git clone https://github.com/gitlabhq/gitlab-shell.git -b v1.9.4" \
- && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 6-9-stable gitlab" \
+ && su git -c "git clone https://github.com/gitlabhq/gitlab-shell.git -b v1.9.6" \
+ && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-0-stable gitlab" \
  && cd /home/git/gitlab \
  && gem install bundler --no-ri --no-rdoc \
  && su git -c "bundle install -j`nproc` --deployment --without development test mysql aws" \
