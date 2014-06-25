@@ -59,4 +59,4 @@ ADD config/etc/confd/conf.d /etc/confd/conf.d
 ADD config/etc/confd/templates /etc/confd/templates
 
 EXPOSE 5000 22
-VOLUME [ "/home/git/.ssh", "/home/git/repositories", "/home/git/gitlab-satellites", "/var/lib/redis" ]
+VOLUME [ "/home/git/.ssh", "/home/git/repositories", "/home/git/gitlab-satellites", "/var/lib/redis", "/etc/ssh" ]
