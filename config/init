@@ -16,8 +16,6 @@ su git -c "./bin/install"
 
 cd /home/git/gitlab
 
-su git -c "bundle exec rake assets:precompile RAILS_ENV=production"
-
 if [ "$1" = "initdb" ]; then
     echo "Regenerating SSH host keys"
     /bin/rm /etc/ssh/ssh_host_*
@@ -31,6 +29,8 @@ elif [ "$1" = "migrate" ]; then
     yes yes | su git -c "bundle exec rake gitlab:backup:create force=yes RAILS_ENV=production"
     yes yes | su git -c "bundle exec rake db:migrate force=yes RAILS_ENV=production"
 else
+    su git -c "bundle exec rake assets:precompile RAILS_ENV=production"
+
     echo "Starting supervisord..."
     exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 fi
