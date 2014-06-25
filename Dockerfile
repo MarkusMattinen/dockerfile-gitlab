@@ -38,7 +38,7 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && sed -i 's/modernizr (= 2.6.2)/modernizr-rails (= 2.7.1)/g' Gemfile.lock \
  && gem install bundler --no-ri --no-rdoc \
  && su git -c "bundle install -j`nproc` --deployment --without development test mysql aws" \
- && apt-get purge -y build-essential zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev libncurses5-dev libffi-dev checkinstall libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev python-docutils postgresql-9.2 libpq-dev \
+ && apt-get purge -y build-essential checkinstall python-docutils postgresql-9.2 \
  && apt-get autoremove -y \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
