@@ -1,4 +1,12 @@
 [template]
+keys = [
+    "/db/adapter",
+    "/db/database",
+    "/db/username",
+    "/db/password",
+    "/db/host",
+    "/db/port",
+]
 owner = "root"
 mode = "0644"
 src = "database.tmpl"
