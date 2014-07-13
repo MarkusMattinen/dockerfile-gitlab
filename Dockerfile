@@ -10,7 +10,7 @@ RUN mkdir -p /tmp/subgit \
  && rm -rf /tmp/subgit
 
 RUN addgroup --gid 999 git \
- && adduser --disabled-login --gecos 'GitLab' --uid 999 --gid 999 git \
+ && adduser --disabled-login --uid 999 --gid 999 git \
  && mkdir -p /var/run/sshd
 
 RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add - \
