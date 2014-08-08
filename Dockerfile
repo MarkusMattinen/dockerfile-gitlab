@@ -2,13 +2,6 @@
 FROM markusma/nginx-etcd:trusty
 MAINTAINER Markus Mattinen <docker@gamma.fi>
 
-RUN mkdir -p /tmp/subgit \
- && cd /tmp/subgit \
- && wget -q http://subgit.com/download/subgit_2.0.0_all.deb \
- && dpkg -i subgit_2.0.0_all.deb \
- && cd / \
- && rm -rf /tmp/subgit
-
 RUN addgroup --gid 999 git \
  && adduser --disabled-login --uid 999 --gid 999 git \
  && mkdir -p /var/run/sshd
