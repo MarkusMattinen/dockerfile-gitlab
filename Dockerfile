@@ -24,7 +24,7 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && rm -rf /tmp/ruby \
  && cd /home/git \
  && su git -c "git clone https://github.com/gitlabhq/gitlab-shell.git -b v1.9.6" \
- && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-0-stable gitlab" \
+ && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-1-stable gitlab" \
  && cd /home/git/gitlab \
  && gem install bundler --no-ri --no-rdoc \
  && su git -c "bundle install -j`nproc` --deployment --without development test mysql aws" \
