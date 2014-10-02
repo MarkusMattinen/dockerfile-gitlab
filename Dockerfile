@@ -12,7 +12,7 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && add-apt-repository ppa:git-core/ppa \
  && apt-get update \
  && apt-get install -y --no-install-recommends build-essential zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev libncurses5-dev libffi-dev openssh-server redis-server checkinstall libxml2-dev libxslt-dev libcurl4-openssl-dev \
-    libicu-dev python python-docutils msmtp-mta sudo openjdk-7-jre-headless git postgresql-9.3 libpq-dev \
+    libicu-dev python python-docutils msmtp-mta sudo openjdk-7-jre-headless git postgresql-9.3 libpq-dev pkg-config cmake \
  && mkdir -p /tmp/ruby \
  && cd /tmp/ruby \
  && curl -sSL ftp://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz | tar xz \
@@ -23,9 +23,10 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && cd / \
  && rm -rf /tmp/ruby \
  && cd /home/git \
- && su git -c "git clone https://github.com/gitlabhq/gitlab-shell.git -b v1.9.6" \
- && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-1-stable gitlab" \
+ && su git -c "git clone https://github.com/gitlabhq/gitlab-shell.git -b v1.9.8" \
+ && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-2-stable gitlab" \
  && cd /home/git/gitlab \
+ && su git -c "cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb" \
  && gem install bundler --no-ri --no-rdoc \
  && su git -c "bundle install -j`nproc` --deployment --without development test mysql aws" \
  && apt-get purge -y build-essential checkinstall python-docutils \
