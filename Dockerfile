@@ -23,10 +23,13 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && cd / \
  && rm -rf /tmp/ruby \
  && cd /home/git \
- && su git -c "git clone https://github.com/gitlabhq/gitlab-shell.git -b v1.9.8" \
- && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-2-stable gitlab" \
+ && su git -c "git clone https://github.com/gitlabhq/gitlab-shell.git -b v2.0.1" \
+ && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-3-stable gitlab" \
  && cd /home/git/gitlab \
+ && usermod -aG redis git \
+ && su git -c "sed -i 's|^  # socket.*|  socket: /var/run/redis/redis.sock|' /home/git/gitlab-shell/config.yml" \
  && su git -c "cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb" \
+ && su git -c "cp config/resque.yml.example config/resque.yml" \
  && gem install bundler --no-ri --no-rdoc \
  && su git -c "bundle install -j`nproc` --deployment --without development test mysql aws" \
  && apt-get purge -y build-essential checkinstall python-docutils \
