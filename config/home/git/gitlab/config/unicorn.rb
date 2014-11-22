@@ -3,7 +3,7 @@ worker_processes 2
 working_directory "/home/git/gitlab"
 listen "/home/git/gitlab/tmp/sockets/gitlab.socket", :backlog => 1024
 listen "127.0.0.1:8080", :tcp_nopush => true
-timeout 300
+timeout 60
 pid "/home/git/gitlab/tmp/pids/unicorn.pid"
 preload_app true
 GC.respond_to?(:copy_on_write_friendly=) and
