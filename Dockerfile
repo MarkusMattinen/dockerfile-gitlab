@@ -27,7 +27,7 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-4-stable gitlab" \
  && cd /home/git/gitlab \
  && usermod -aG redis git \
- && su git -c "sed -i 's|^  # socket.*|  socket: /var/run/redis/redis.sock|' /home/git/gitlab-shell/config.yml" \
+ && su git -c "cp /home/git/gitlab-shell/config.yml.example /home/git/gitlab-shell/config.yml" \
  && su git -c "cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb" \
  && su git -c "cp config/resque.yml.example config/resque.yml" \
  && gem install bundler --no-ri --no-rdoc \
