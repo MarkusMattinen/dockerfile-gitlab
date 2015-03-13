@@ -1,5 +1,5 @@
 # gitlab with nginx, etcd registration, confd and supervisord on trusty
-FROM markusma/nginx-etcd:trusty
+FROM markusma/nginx-etcdregister:1.5.13
 MAINTAINER Markus Mattinen <docker@gamma.fi>
 
 RUN addgroup --gid 999 git \
