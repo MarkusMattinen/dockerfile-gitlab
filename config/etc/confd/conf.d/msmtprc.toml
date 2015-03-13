@@ -1,14 +1,4 @@
 [template]
-keys = [
-    "/smtp/from",
-    "/smtp/host",
-    "/smtp/port",
-    "/smtp/tls",
-    "/smtp/domain",
-    "/smtp/auth",
-    "/smtp/user",
-    "/smtp/pass",
-]
 owner = "root"
 mode = "0644"
 src = "msmtprc.tmpl"

@@ -1,11 +1,11 @@
 defaults
 account default
-host {{ getv "/smtp_host" }}
-port {{ getv "/smtp_port" }}
-tls {{ getv "/smtp_tls" }}
+host {{ getenv "SMTP_HOST" }}
+port {{ getenv "SMTP_PORT" }}
+tls {{ getenv "SMTP_TLS" }}
 tls_certcheck off
-domain {{ getv "/smtp_domain" }}
-from {{ getv "/smtp_from" }}
-auth {{ getv "/smtp_auth" }}
-user {{ getv "/smtp_user" }}
-password {{ getv "/smtp_pass" }}
+domain {{ getenv "SMTP_DOMAIN" }}
+from {{ getenv "SMTP_FROM" }}
+auth {{ getenv "SMTP_AUTH" }}
+user {{ getenv "SMTP_USER" }}
+password {{ getenv "SMTP_PASS" }}

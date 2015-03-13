@@ -6,11 +6,11 @@ upstream gitlab {
 
 server {
     listen [::]:5000 ipv6only=off;
-    server_name {{ getv "/vhost" }};
+    server_name {{ getenv "VHOST" }};
     root /home/git/gitlab/public;
 
     more_set_headers "X-Frame-Options: DENY";
-    more_set_headers "Access-Control-Allow-Origin: https://{{ getv "/vhost" }}";
+    more_set_headers "Access-Control-Allow-Origin: https://{{ getenv "VHOST" }}";
 
     location / {
         try_files $uri $uri/index.html $uri.html @gitlab;

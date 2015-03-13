@@ -1,10 +1,10 @@
 # database config
 production:
-  adapter: {{ getv "/db_adapter" }}
+  adapter: {{ getenv "DB_ADAPTER" }}
   encoding: unicode
-  database: {{ getv "/db_database" }}
+  database: {{ getenv "DB_DATABASE" }}
   pool: 10
-  username: {{ getv "/db_username" }}
-  password: {{ getv "/db_password" }}
-  host: {{ getv "/db_host" }}
-  port: {{ getv "/db_port" }}
+  username: {{ getenv "DB_USERNAME" }}
+  password: {{ getenv "DB_PASSWORD" }}
+  host: {{ getenv "DB_HOST" }}
+  port: {{ getenv "DB_PORT" }}

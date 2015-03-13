@@ -1,7 +1,4 @@
 [template]
-keys = [
-    "/vhost"
-]
 owner = "root"
 mode = "0644"
 src = "nginx.tmpl"

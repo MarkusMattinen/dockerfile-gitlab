@@ -1,15 +1,4 @@
 [template]
-keys = [
-    "/vhost",
-    "/smtp/from",
-    "/smtp/support/email",
-    "/oauth/google/app/id",
-    "/oauth/google/app/secret",
-    "/oauth/twitter/app/id",
-    "/oauth/twitter/app/secret",
-    "/oauth/github/app/id",
-    "/oauth/github/app/secret",
-]
 owner = "root"
 mode = "0644"
 src = "gitlab.tmpl"
