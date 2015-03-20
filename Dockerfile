@@ -23,8 +23,8 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && cd / \
  && rm -rf /tmp/ruby \
  && cd /home/git \
- && su git -c "git clone https://github.com/gitlabhq/gitlab-shell.git -b v2.0.1" \
- && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-5-stable gitlab" \
+ && su git -c "git clone https://github.com/gitlabhq/gitlab-shell.git -b v2.4.0" \
+ && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-6-stable gitlab" \
  && cd /home/git/gitlab \
  && usermod -aG redis git \
  && su git -c "cp /home/git/gitlab-shell/config.yml.example /home/git/gitlab-shell/config.yml" \
