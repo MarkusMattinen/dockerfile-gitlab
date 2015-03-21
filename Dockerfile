@@ -10,9 +10,9 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
  && add-apt-repository ppa:chris-lea/redis-server \
  && add-apt-repository ppa:git-core/ppa \
- && apt-get update \
+ && curl -sL https://deb.nodesource.com/setup | sudo bash - \
  && apt-get install -y --no-install-recommends build-essential zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev libncurses5-dev libffi-dev openssh-server redis-server checkinstall libxml2-dev libxslt-dev libcurl4-openssl-dev \
-    libicu-dev python python-docutils msmtp-mta sudo openjdk-7-jre-headless git postgresql-9.3 libpq-dev pkg-config cmake \
+    libicu-dev python python-docutils msmtp-mta sudo openjdk-7-jre-headless git postgresql-9.3 libpq-dev pkg-config cmake nodejs \
  && mkdir -p /tmp/ruby \
  && cd /tmp/ruby \
  && curl -sSL ftp://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz | tar xz \
