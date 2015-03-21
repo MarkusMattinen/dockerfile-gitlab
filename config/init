@@ -2,6 +2,9 @@
 
 confd -onetime -backend env -config-file /etc/confd/confd.toml
 
+mkdir -p /var/run/redis
+chown redis:redis /var/run/redis
+
 sysctl vm.overcommit_memory=1
 
 echo "Fixing volume permissions..."
