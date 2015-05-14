@@ -15,8 +15,8 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
     libicu-dev python python-docutils msmtp-mta sudo openjdk-7-jre-headless git postgresql-9.3 libpq-dev pkg-config cmake nodejs \
  && mkdir -p /tmp/ruby \
  && cd /tmp/ruby \
- && curl -sSL ftp://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz | tar xz \
- && cd ruby-2.1.2 \
+ && curl -sSL ftp://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.6.tar.gz | tar xz \
+ && cd ruby-2.1.6 \
  && ./configure --disable-install-rdoc \
  && make -j4 \
  && make install \
