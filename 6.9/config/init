@@ -1,0 +1,37 @@
+#!/bin/sh
+
+confd -onetime -backend env -config-file /etc/confd/confd.toml
+
+sysctl vm.overcommit_memory=1
+
+echo "Fixing volume permissions..."
+chown -R git:git /home/git/repositories
+chown -R git:git /home/git/gitlab-satellites
+chown -R git:git /home/git/.ssh
+
+cd /home/git/gitlab-shell
+
+echo "Installing gitlab-shell..."
+su git -c "./bin/install"
+
+cd /home/git/gitlab
+
+su git -c "bundle exec rake assets:precompile RAILS_ENV=production"
+
+if [ "$1" = "initdb" ]; then
+    echo "Regenerating SSH host keys"
+    /bin/rm /etc/ssh/ssh_host_*
+    dpkg-reconfigure openssh-server
+
+    echo "Initializing db..."
+    yes yes | su git -c "bundle exec rake gitlab:setup force=yes RAILS_ENV=production"
+    yes yes | su git -c "bundle exec rake db:seed_fu force=yes RAILS_ENV=production"
+elif [ "$1" = "migrate" ]; then
+    echo "Migrating db..."
+    yes yes | su git -c "bundle exec rake gitlab:backup:create force=yes RAILS_ENV=production"
+    yes yes | su git -c "bundle exec rake db:migrate force=yes RAILS_ENV=production"
+else
+    echo "Starting supervisord..."
+    exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+fi
+

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /home/git/gitlab
+exec bundle exec unicorn_rails -c /home/git/gitlab/config/unicorn.rb -E $RAILS_ENV

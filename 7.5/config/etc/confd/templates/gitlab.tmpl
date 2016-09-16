@@ -1,0 +1,60 @@
+# gitlab config
+
+production: &base
+  gitlab:
+    host: {{ getenv "VHOST" }}
+    port: 443
+    https: true
+    email_from: {{ getenv "SMTP_FROM" }}
+    support_email: {{ getenv "SMTP_SUPPORT_EMAIL" }}
+    default_projects_limit: 10
+    default_can_create_group: true
+    default_can_create_team: true
+    username_changing_enabled: true
+    signup_enabled: true
+    default_projects_features:
+      issues: true
+      merge_requests: true
+      wiki: true
+      wall: true
+      snippets: true
+      public: false
+
+  gravatar:
+    enabled: true
+
+  ldap:
+    enabled: false
+
+  omniauth:
+    enabled: true
+
+    allow_single_sign_on: true
+    block_auto_created_users: false
+
+    providers:
+       - { name: 'google_oauth2', app_id: '{{ getenv "OAUTH_GOOGLE_APP_ID" }}',
+           app_secret: '{{ getenv "OAUTH_GOOGLE_APP_SECRET" }}',
+           args: { access_type: 'offline', approval_prompt: '' } }
+       - { name: 'twitter', app_id: '{{ getenv "OAUTH_TWITTER_APP_ID" }}',
+           app_secret: '{{ getenv "OAUTH_TWITTER_APP_SECRET" }}'}
+       - { name: 'github', app_id: '{{ getenv "OAUTH_GITHUB_APP_ID" }}',
+           app_secret: '{{ getenv "OAUTH_GITHUB_APP_SECRET" }}' }
+
+  satellites:
+    path: /home/git/gitlab-satellites/
+
+  backup:
+    path: "tmp/backups"
+
+  gitlab_shell:
+    repos_path: /home/git/repositories/
+    hooks_path: /home/git/gitlab-shell/hooks/
+
+    upload_pack: true
+    receive_pack: true
+
+  git:
+    bin_path: /usr/bin/git
+    max_size: 524288000
+    timeout: 60

@@ -1,6 +1,6 @@
-# gitlab with nginx, etcd registration, confd and supervisord on trusty
+# gitlab with nginx, etcd registration, confd and supervisord on Ubuntu Trusty
 FROM markusma/nginx-etcdregister:1.7
-MAINTAINER Markus Mattinen <docker@gamma.fi>
+MAINTAINER Markus Mattinen <markus@gamma.fi>
 
 RUN addgroup --gid 999 git \
  && adduser --disabled-login --uid 999 --gid 999 git \
@@ -10,21 +10,21 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
  && add-apt-repository ppa:chris-lea/redis-server \
  && add-apt-repository ppa:git-core/ppa \
- && curl -sL https://deb.nodesource.com/setup | sudo bash - \
+ && apt-get update \
  && apt-get install -y --no-install-recommends build-essential zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev libncurses5-dev libffi-dev openssh-server redis-server checkinstall libxml2-dev libxslt-dev libcurl4-openssl-dev \
-    libicu-dev python python-docutils msmtp-mta sudo openjdk-7-jre-headless git postgresql-9.3 libpq-dev pkg-config cmake nodejs \
+    libicu-dev python python-docutils msmtp-mta sudo openjdk-7-jre-headless git postgresql-9.3 libpq-dev pkg-config cmake \
  && mkdir -p /tmp/ruby \
  && cd /tmp/ruby \
- && curl -sSL ftp://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.6.tar.gz | tar xz \
- && cd ruby-2.1.6 \
+ && curl -sSL ftp://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz | tar xz \
+ && cd ruby-2.1.2 \
  && ./configure --disable-install-rdoc \
  && make -j4 \
  && make install \
  && cd / \
  && rm -rf /tmp/ruby \
  && cd /home/git \
- && su git -c "git clone https://github.com/gitlabhq/gitlab-shell.git -b v2.6.2" \
- && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-10-stable gitlab" \
+ && su git -c "git clone https://github.com/gitlabhq/gitlab-shell.git -b v2.4.2" \
+ && su git -c "git clone https://github.com/gitlabhq/gitlabhq.git -b 7-7-stable gitlab" \
  && cd /home/git/gitlab \
  && usermod -aG redis git \
  && su git -c "cp /home/git/gitlab-shell/config.yml.example /home/git/gitlab-shell/config.yml" \

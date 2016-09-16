@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /home/git/gitlab
+exec bundle exec sidekiq -q post_receive,mailer,system_hook,project_web_hook,gitlab_shell,common,default -e $RAILS_ENV

@@ -1,0 +1,11 @@
+defaults
+account default
+host {{ getenv "SMTP_HOST" }}
+port {{ getenv "SMTP_PORT" }}
+tls {{ getenv "SMTP_TLS" }}
+tls_certcheck off
+domain {{ getenv "SMTP_DOMAIN" }}
+from {{ getenv "SMTP_FROM" }}
+auth {{ getenv "SMTP_AUTH" }}
+user {{ getenv "SMTP_USER" }}
+password {{ getenv "SMTP_PASS" }}
