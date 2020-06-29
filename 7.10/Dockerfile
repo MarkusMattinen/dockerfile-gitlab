@@ -1,13 +1,12 @@
-# gitlab with nginx, etcd registration, confd and supervisord on Ubuntu Trusty
-FROM markusma/nginx-etcdregister:1.7
-MAINTAINER Markus Mattinen <markus@gamma.fi>
+# gitlab with nginx, etcd registration, confd and supervisord on Ubuntu Bionic
+FROM markusma/nginx-etcdregister:1.16-ubuntu-bionic
 
 RUN addgroup --gid 999 git \
  && adduser --disabled-login --uid 999 --gid 999 git \
  && mkdir -p /var/run/sshd
 
 RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add - \
- && echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+ && echo "deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
  && add-apt-repository ppa:chris-lea/redis-server \
  && add-apt-repository ppa:git-core/ppa \
  && curl -sL https://deb.nodesource.com/setup | sudo bash - \
