@@ -1,0 +1,6 @@
+[template]
+owner = "root"
+mode = "0644"
+src = "gitlab.tmpl"
+dest = "/home/git/gitlab/config/gitlab.yml"
+reload_cmd = "/usr/sbin/supervisorctl restart gitlab"
