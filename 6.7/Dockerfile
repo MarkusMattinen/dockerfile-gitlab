@@ -43,7 +43,7 @@ RUN curl -sSL http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add
  && apt-get purge -y build-essential checkinstall python-docutils postgresql-9.2 \
  && apt-get autoremove -y \
  && apt-get clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* $HOME/.cache
 
 RUN su git -c "HOME=/home/git git config --global user.name 'GitLab'" \
  && su git -c "HOME=/home/git git config --global user.email 'gitlab@localhost'" \
